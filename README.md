@@ -55,7 +55,7 @@ installed for 'asciidoctor-bibtex' to work. asciidoctor version >=1.5.3,
 
 Syntax for inserting a citation is the following inline macro:
 
-    cite|citenp:[ref(pages), ...]
+    cite|citenp|fullcite:[ref(pages), ...]
 
 where '(pages)' is optional.
 
@@ -64,16 +64,19 @@ Examples of "chicago-author-date" style:
 - `cite:[Lane12]` becomes "(Lane 2012)"
 - `citenp:[Lane12]` becomes "Lane (2012)"
 - `cite:[Lane12(59)]` becomes "(Lane 2012, 59)"
+- `fullcite:[Lane12]` becomes "Lane, P. 2000. Book Title. Publisher."
 
 For *apa* (Harvard-like) style:
 
 - `cite:[Lane12]` becomes "(Lane, 2012)"
 - `citenp:[Lane12]` becomes "Lane (2012)"
 - `cite:[Lane12(59)]` becomes "(Lane, 2012, p.59)"
+- `fullcite:[Lane12]` becomes "P. Lane, Book title. Publisher, 2000."
 
 For *ieee*, a numeric style:
 
-`cite:[Lane12,Lane11]` becomes "[1, 2]"
+- `cite:[Lane12,Lane11]` becomes "[1, 2]"
+- `fullcite:[Lane12]` becomes "P. Lane, Book title. Publisher, 2000."
 
 To add a list of formatted references, place `bibliography::[]` on a line by itself.
 
