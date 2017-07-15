@@ -58,7 +58,7 @@ module AsciidoctorBibtex
           result << "#{separator} " unless index.zero?
 
           # @links requires adding hyperlink to reference
-          result << "<<#{cite.ref}," if @links
+          result << "<<#{cite.ref}," if @links and (cite_data.type != 'fullcite')
 
           # if found, insert reference information
           unless biblio[cite.ref].nil?
@@ -71,7 +71,7 @@ module AsciidoctorBibtex
 
           result << cite_text.html_to_asciidoc
           # @links requires finish hyperlink
-          result << ">>" if @links
+          result << ">>" if @links and (cite_data.type != 'fullcite')
         end
 
         unless @links
@@ -155,7 +155,12 @@ module AsciidoctorBibtex
     # in the list of used citations.
     # Other citations are formatted by citeproc.
     def make_citation item, ref, cite_data, cite
-      if Styles.is_numeric? @style
+      if cite_data.type == "fullcite"
+        cite_text = @citeproc.render(:bibliography, id: ref).join
+
+        fc = ''
+        lc = ''
+      elsif Styles.is_numeric? @style
         cite_text = if @numeric_in_appearance_order
                       "#{@citations.cites_used.index(cite.ref) + 1}"
                     else
@@ -171,7 +176,8 @@ module AsciidoctorBibtex
         cite_text = cite_text[1..-2]
       end
 
-      if Styles.is_numeric? @style
+      if cite_data.type == "fullcite"
+      elsif Styles.is_numeric? @style
         cite_text << "#{page_str(cite)}"
       elsif cite_data.type == "citenp"
         cite_text.gsub!(item.year, "#{fc}#{item.year}#{page_str(cite)}#{lc}")

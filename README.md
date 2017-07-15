@@ -46,8 +46,8 @@ asciidoctor-bibtex depends on
 'libxslt1-dev' are installed, so the dependencies will compile.)
 
 [asciidoctor](https://github.com/asciidoctor/asciidoctor) must also be
-installed for 'asciidoctor-bibtex' to work. asciidoctor version 1.5.2 or
-higher is required.
+installed for 'asciidoctor-bibtex' to work. asciidoctor version >=1.5.3,
+<=1.5.5 is required.
 
 ## Usage
 

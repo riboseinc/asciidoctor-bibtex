@@ -57,7 +57,7 @@ module AsciidoctorBibtex
     # matches a citation key, such as 'Dan2012(99-100)'
     CITATION_KEY = /([^\s,()\[\]]+)(\(\d+(-\d+)*\))?/
     # matches a citation type
-    CITATION_TYPE = /cite|citenp/
+    CITATION_TYPE = /cite|citenp|fullcite/
     # matches a citation list
     CITATION_LIST_TAIL = /(\s*,\s*#{CITATION_KEY})*/
     CITATION_LIST = /(?:#{CITATION_KEY}#{CITATION_LIST_TAIL})/
